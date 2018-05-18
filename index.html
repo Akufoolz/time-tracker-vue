@@ -50,10 +50,10 @@
                                 {{entry.type}}
                             </td>
                             <td class="has-text-centered">
-                                {{entry.start}}
+                                <input type="time" v-bind:value="entry.start">
                             </td>
                             <td class="has-text-centered">
-                                {{entry.end}}
+                                <input type="time" v-bind:value="entry.end">
                             </td>
                             <td class="has-text-centered">
                                 {{entry.hours}}

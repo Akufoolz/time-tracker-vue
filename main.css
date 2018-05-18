@@ -1,3 +1,7 @@
 html {
     background-color: #445;
 }
+
+input[type=time] {
+    border: 0;
+}
