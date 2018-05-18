@@ -12,7 +12,60 @@
 </head>
 
 <body>
-    <div id="app"></div>
+    <div id="app">
+        <header class="hero is-primary is-bold is-small">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        Time Tracker
+                    </h1>
+                </div>
+            </div>
+        </header>
+        <section class="section">
+            <div class="container">
+                <table class="table is-striped is-narrow is-hoverable is-fullwidth">
+                   <thead>
+                       <tr>
+                           <th class="has-text-centered is-primary">
+                               Type
+                           </th>
+                           <th class="has-text-centered is-primary">
+                               Start
+                           </th>
+                           <th class="has-text-centered is-primary">
+                               End
+                            </th>
+                           <th class="has-text-centered is-primary">
+                               Hours
+                           </th>
+                           <th class="has-text-centered is-primary">
+                               <3
+                           </th>
+                       </tr>
+                   </thead> 
+                   <tbody>
+                       <tr v-for="entry in entries" v-bind:key="entry.id">
+                            <td class="has-text-centered">
+                                {{entry.type}}
+                            </td>
+                            <td class="has-text-centered">
+                                {{entry.start}}
+                            </td>
+                            <td class="has-text-centered">
+                                {{entry.end}}
+                            </td>
+                            <td class="has-text-centered">
+                                {{entry.hours}}
+                            </td>
+                            <td class="has-text-centered">
+                            </td>
+                       </tr>
+                   </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="main.js"></script>
 </body>
