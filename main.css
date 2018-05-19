@@ -4,4 +4,10 @@ html {
 
 input[type=time] {
     border: 0;
+    box-shadow: unset;
+    max-width: 8.2rem;
+}
+
+td {
+    vertical-align: middle !important;
 }

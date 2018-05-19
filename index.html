@@ -25,31 +25,30 @@
         <section class="section">
             <div class="container">
                 <table class="table is-striped is-narrow is-hoverable is-fullwidth">
-                   <thead>
-                       <tr>
-                           <th class="has-text-centered is-primary">
-                               Type
-                           </th>
-                           <th class="has-text-centered is-primary">
-                               Start
-                           </th>
-                           <th class="has-text-centered is-primary">
-                               End
+                    <thead>
+                        <tr>
+                            <th class="has-text-centered is-primary">
+                                Type
                             </th>
-                           <th class="has-text-centered is-primary">
-                               Hours
-                           </th>
-                           <th class="has-text-centered is-primary">
-                               <3
-                           </th>
-                       </tr>
-                   </thead> 
-                   <tbody>
-                       <tr v-for="entry in entries" v-bind:key="entry.id">
+                            <th class="has-text-centered is-primary">
+                                Start
+                            </th>
+                            <th class="has-text-centered is-primary">
+                                End
+                            </th>
+                            <th class="has-text-centered is-primary">
+                                Hours
+                            </th>
+                            <th class="has-text-centered is-primary">
+                                <3 </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="entry in entries" v-bind:key="entry.id">
                             <td class="has-text-centered">
                                 {{entry.type}}
                             </td>
-<!--                             <td class="has-text-centered">
+                            <!--                             <td class="has-text-centered">
                                 <input class="input" type="text" 
                                 pattern="^(1[0-2]|0?[1-9]):[0-5][0-9] (AM|PM)$" 
                                 title="HH:MM (AM/PM)" 
@@ -63,25 +62,26 @@
                                 v-model="entry.end" 
                                 @change="calcHours">
                             </td>
-  -->                       
+  -->
                             <td class="has-text-centered">
-                                <input type="time" class="input"
-                                v-model="entry.start"
-                                @change="calcHours">
+                                <input type="time" class="input" v-model="entry.start" @change="calcHours">
                             </td>
                             <td class="has-text-centered">
-                                <input type="time" class="input"
-                                v-model="entry.end"
-                                @change="calcHours">
+                                <input type="time" class="input" v-model="entry.end" @change="calcHours">
                             </td>
                             <td class="has-text-centered">
                                 {{entry.hours}}
                             </td>
                             <td class="has-text-centered">
                             </td>
-                       </tr>
-                   </tbody>
+                        </tr>
+                    </tbody>
                 </table>
+            </div>
+            <div class="container">
+                <div class="box is-pulled-right">
+                    Hello
+                </div>
             </div>
         </section>
     </div>

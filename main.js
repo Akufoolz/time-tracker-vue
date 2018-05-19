@@ -26,7 +26,6 @@ var vm = new Vue({
  
             }
         ],
-        dateTest: ""
     },
     methods: {
         calcHours: function() {
@@ -36,17 +35,9 @@ var vm = new Vue({
                 //el.start = dateStart.toLocaleString('en-US', {hour:'numeric', minute:'numeric', hour12: true})
                 let dateEnd = new Date(`January 01, 1970 ${el.end}:00`);
                 //el.end = dateEnd.toLocaleString('en-US', {hour:'numeric', minute:'numeric', hour12: true})
-                let hours = (((dateEnd - dateStart)/1000)/60)/60;
+                let hours = parseFloat((((dateEnd - dateStart)/1000)/60)/60).toFixed(2);
                 v.$set(el, 'hours', hours);
             });
-        },
-        dateChange: function() {
-            console.log(`Date1: ${this.dateTest}`);
-            
-            console.log(`Date2: ${date}`);
-            
-            console.log(`Date3: ${this.dateTest}`);
-            
         }
     },
     beforeMount() {
