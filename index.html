@@ -49,11 +49,30 @@
                             <td class="has-text-centered">
                                 {{entry.type}}
                             </td>
-                            <td class="has-text-centered">
-                                <input type="time" v-bind:value="entry.start">
+<!--                             <td class="has-text-centered">
+                                <input class="input" type="text" 
+                                pattern="^(1[0-2]|0?[1-9]):[0-5][0-9] (AM|PM)$" 
+                                title="HH:MM (AM/PM)" 
+                                v-model="entry.start" 
+                                @change="calcHours">
                             </td>
                             <td class="has-text-centered">
-                                <input type="time" v-bind:value="entry.end">
+                                <input class="input" type="text" 
+                                pattern="^(1[0-2]|0?[1-9]):[0-5][0-9] (AM|PM)$" 
+                                title="HH:MM (AM/PM)" 
+                                v-model="entry.end" 
+                                @change="calcHours">
+                            </td>
+  -->                       
+                            <td class="has-text-centered">
+                                <input type="time" class="input"
+                                v-model="entry.start"
+                                @change="calcHours">
+                            </td>
+                            <td class="has-text-centered">
+                                <input type="time" class="input"
+                                v-model="entry.end"
+                                @change="calcHours">
                             </td>
                             <td class="has-text-centered">
                                 {{entry.hours}}
