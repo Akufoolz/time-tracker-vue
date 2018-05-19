@@ -3,6 +3,7 @@ html {
 }
 
 input[type=time] {
+    background-color: transparent;
     border: 0;
     box-shadow: unset;
     max-width: 8.2rem;
