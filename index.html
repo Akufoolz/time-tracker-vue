@@ -14,66 +14,79 @@
 
 <body>
     <div id="app">
-        <div class="section">
-            <div class="container">
-                <h1 class="title has-text-light">
-                    Time Tracker
-                </h1>
+        <section class="section">
+            <div class="columns">
+                <div class="column is-10 is-offset-1">
+                    <p class="title has-text-light">
+                        Time Tracker
+                    </p>
+                    <table class="table is-striped is-narrow is-hoverable is-fullwidth">
+                        <thead>
+                            <tr>
+                                <th class="has-text-centered is-primary">
+                                    Type
+                                </th>
+                                <th class="has-text-centered is-primary">
+                                    Start
+                                </th>
+                                <th class="has-text-centered is-primary">
+                                    End
+                                </th>
+                                <th class="has-text-centered is-primary">
+                                    Hours
+                                </th>
+                                <th class="has-text-centered is-primary">
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(entry, index) in entries" :key="index">
+                                <td class="has-text-centered">
+                                    <div class="select is-primary">
+                                        <select class="has-text-centered">
+                                            <option v-for="(type, index) in entryTypes" :value="type" :selected="type == entry.type">{{type}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td class="has-text-centered">
+                                    <input type="time" class="input" v-model="entry.start" @change="calcHours">
+                                </td>
+                                <td class="has-text-centered">
+                                    <input type="time" class="input" v-model="entry.end" @change="calcHours">
+                                </td>
+                                <td class="has-text-centered">
+                                    {{entry.hours}}
+                                </td>
+                                <td class="has-text-centered">
+                                    <a class="icon has-text-primary" @click="addEntry(index)" title="Add row below.">
+                                        <i class="fas fa-fw fa-plus-circle"></i>
+                                    </a>
+                                    <a class="icon has-text-danger" @click="delEntry(index)" title="Delete row.">
+                                        <i class="fas fa-fw fa-minus-circle"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th class="is-primary has-text-centered">
+                                    Total:
+                                </th>
+                                <th class="is-primary"></th>
+                                <th class="is-primary has-text-centered">
+                                </th>
+                                <th class="is-primary has-text-centered">
+                                    {{totalHours}}
+                                </th>
+                                <th class="is-primary"></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
-            <div class="container">
-                <table class="table is-striped is-narrow is-hoverable is-fullwidth">
-                    <thead>
-                        <tr>
-                            <th class="has-text-centered is-primary">
-                                Type
-                            </th>
-                            <th class="has-text-centered is-primary">
-                                Start
-                            </th>
-                            <th class="has-text-centered is-primary">
-                                End
-                            </th>
-                            <th class="has-text-centered is-primary">
-                                Hours
-                            </th>
-                            <th class="has-text-centered is-primary">
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(entry, index) in entries" :key="index">
-                            <td class="has-text-centered">
-                                <div class="select is-primary">
-                                    <select class="has-text-centered">
-                                        <option v-for="(type, index) in entryTypes" :selected="type == entry.type">{{type}}</option>
-                                    </select>
-                                </div>
-                            </td>
-                            <td class="has-text-centered">
-                                <input type="time" class="input" v-model="entry.start" @change="calcHours">
-                            </td>
-                            <td class="has-text-centered">
-                                <input type="time" class="input" v-model="entry.end" @change="calcHours">
-                            </td>
-                            <td class="has-text-centered">
-                                {{entry.hours}}
-                            </td>
-                            <td class="has-text-centered">
-                                <a class="icon has-text-primary" @click="addEntry(index)" title="Add row below.">
-                                    <i class="fas fa-fw fa-plus-circle"></i>
-                                </a>
-                                <a class="icon has-text-danger" @click="delEntry(index)" title="Delete row.">
-                                    <i class="fas fa-fw fa-minus-circle"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            </section>
-        </div>
+        </section>
     </div>
-        <script src="main.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

@@ -20,15 +20,8 @@ var vm = new Vue({
                 start: "12:30",
                 end: "16:30",
                 hours: ""
-            },
-            {
-                type: "Training",
-                start: "12:30",
-                end: "16:30",
-                hours: ""
             }
-        ],
-        entryTypes: []
+        ]
     },
     methods: {
         calcHours: function () {
@@ -43,11 +36,9 @@ var vm = new Vue({
             });
         },
         addEntry: function (index) {
-            let newEntry = { type: "", start: "", end: "", hours: "" };
+            //let newEntry = { type: "", start: "", end: "", hours: "" };
+            let newEntry = {type: "-None-"};
             this.entries.splice((index + 1), 0, newEntry);
-            //this.entries.splice((this.id + 1), 0, this.newEntry);
-            //this.$set(this.entries, (this.id + 1), this.newEntry);
-
         },
         delEntry: function (index) {
             if (this.entries.length != 1) {
@@ -58,13 +49,23 @@ var vm = new Vue({
         }
     },
     computed: {
-        setEntryTypes: function () {
+        entryTypes: function () {
             let v = this;
+            let array = ["-None-"];
             v.entries.forEach(el => {
-                if (v.entryTypes.indexOf(el.type) < 0) {
-                    v.entryTypes.push(el.type);
+                if (array.indexOf(el.type) < 0) {
+                    array.push(el.type);
                 }
             });
+            return array;
+        },
+        totalHours: function () {
+            let v = this;
+            let total = 0;
+            v.entries.forEach(el => {
+                total += parseFloat(el.hours);
+            });
+            return total.toFixed(2);
         }
     },
     beforeMount() {

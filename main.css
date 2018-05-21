@@ -18,6 +18,10 @@ input[type=time]:hover {
     background-color: rgba(100, 100, 100, 0.1);
 }
 
-td {
+td, th {
     vertical-align: middle !important;
+}
+
+.tt-has-text-white {
+    color: #FFF !important;
 }
