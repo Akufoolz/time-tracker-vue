@@ -25,7 +25,15 @@ var vm = new Vue({
                 end: "16:30",
                 hours: ""
             }
-        ]
+        ],
+
+        types: ["-None-"],
+
+        addTypeValue: "",
+
+        delTypeValue: "",
+
+        filterSelect: ""
 
     },
 
@@ -65,6 +73,35 @@ var vm = new Vue({
             } else {
                 alert("You cannot remove the only existing row.");
             }
+        },
+
+        addType: function (el) {
+
+            if (this.types.indexOf(el) < 0) {
+                this.types.push(el);
+            }
+        },
+
+        delType: function (el) {
+            let index = this.types.indexOf(el);
+            if (index > 0) {
+                this.types.splice(index, 1);
+            }
+        },
+
+        filterHours: function (type) {
+
+            let v = this;
+            let hours = 0;
+
+            v.entries.forEach(el => {
+                if (el.type == type) {
+                    hours += parseFloat(el.hours);
+                }
+            });
+
+            return hours.toFixed(2);
+
         }
 
     },
@@ -76,16 +113,13 @@ var vm = new Vue({
 
             let v = this;
 
-            // initialize array with default -None- type
-            let array = ["-None-"];
-
             v.entries.forEach(el => {
-                if (array.indexOf(el.type) < 0) {
-                    array.push(el.type);
+                if (v.types.indexOf(el.type) < 0) {
+                    v.types.push(el.type);
                 }
             });
 
-            return array;
+            return v.types;
         },
 
         // calculate total hours by summing all entry hours

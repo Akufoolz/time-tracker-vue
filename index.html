@@ -43,16 +43,16 @@
                             <tr v-for="(entry, index) in entries" :key="index">
                                 <td class="has-text-centered">
                                     <div class="select is-primary">
-                                        <select class="has-text-centered">
+                                        <select class="has-text-centered tt-is-borderless">
                                             <option v-for="(type, index) in entryTypes" :value="type" :selected="type == entry.type">{{type}}</option>
                                         </select>
                                     </div>
                                 </td>
                                 <td class="has-text-centered">
-                                    <input type="time" class="input" v-model="entry.start">
+                                    <input type="time" class="input is-shadowless" v-model="entry.start">
                                 </td>
                                 <td class="has-text-centered">
-                                    <input type="time" class="input" v-model="entry.end">
+                                    <input type="time" class="input is-shadowless" v-model="entry.end">
                                 </td>
                                 <td class="has-text-centered">
                                     {{rowHours(entry)}}
@@ -83,6 +83,54 @@
                             </tr>
                         </tfoot>
                     </table>
+                    <div class="columns">
+                        <div class="column is-4">
+                            <p class="label has-text-light">Total hours by type:</p>
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <div class="select is-dark">
+                                        <select class="has-text-centered tt-is-borderless" v-model="filterSelect">
+                                            <option v-for="(type, index) in entryTypes" :value="type">{{type}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <span class="button tt-has-cursor-default">
+                                        {{filterHours(filterSelect)}}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <label class="label has-text-light">Add type:</label>
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Type" v-model="addTypeValue">
+                                </div>
+                                <div class="control">
+                                    <button class="button" @click="addType(addTypeValue)">
+                                        <a class="icon has-text-primary" title="Add type.">
+                                            <i class="fas fa-plus-square"></i>
+                                        </a>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <label class="label has-text-light">Remove type:</label>
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Type" v-model="delTypeValue">
+                                </div>
+                                <div class="control">
+                                    <button class="button" @click="delType(delTypeValue)">
+                                        <a class="icon has-text-danger" title="Remove type.">
+                                            <i class="fas fa-minus-square"></i>
+                                        </a>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

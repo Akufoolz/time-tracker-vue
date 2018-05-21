@@ -5,13 +5,7 @@ html {
 input[type=time] {
     background-color: transparent;
     border: 0;
-    box-shadow: unset;
     max-width: 8.2rem;
-}
-
-select {
-    background-color: transparent !important;
-    border: 0 !important;
 }
 
 input[type=time]:hover {
@@ -24,4 +18,12 @@ td, th {
 
 .tt-has-text-white {
     color: #FFF !important;
+}
+
+.tt-is-borderless {
+    border: 0 !important;
+}
+
+.tt-has-cursor-default {
+    cursor: default !important;
 }
