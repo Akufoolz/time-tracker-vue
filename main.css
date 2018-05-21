@@ -9,6 +9,11 @@ input[type=time] {
     max-width: 8.2rem;
 }
 
+select {
+    background-color: transparent !important;
+    border: 0 !important;
+}
+
 input[type=time]:hover {
     background-color: rgba(100, 100, 100, 0.1);
 }

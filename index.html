@@ -41,9 +41,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(entry, index) in entries" v-bind:key="index">
+                        <tr v-for="(entry, index) in entries" :key="index">
                             <td class="has-text-centered">
-                                {{entry.type}}
+                                <div class="select is-primary">
+                                    <select class="has-text-centered">
+                                        <option v-for="(type, index) in entryTypes" :selected="type == entry.type">{{type}}</option>
+                                    </select>
+                                </div>
                             </td>
                             <td class="has-text-centered">
                                 <input type="time" class="input" v-model="entry.start" @change="calcHours">

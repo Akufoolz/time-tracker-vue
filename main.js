@@ -20,8 +20,15 @@ var vm = new Vue({
                 start: "12:30",
                 end: "16:30",
                 hours: ""
+            },
+            {
+                type: "Training",
+                start: "12:30",
+                end: "16:30",
+                hours: ""
             }
         ],
+        entryTypes: []
     },
     methods: {
         calcHours: function () {
@@ -50,7 +57,18 @@ var vm = new Vue({
             }
         }
     },
+    computed: {
+        setEntryTypes: function () {
+            let v = this;
+            v.entries.forEach(el => {
+                if (v.entryTypes.indexOf(el.type) < 0) {
+                    v.entryTypes.push(el.type);
+                }
+            });
+        }
+    },
     beforeMount() {
         this.calcHours();
+        this.setEntryTypes;
     }
 });
