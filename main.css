@@ -9,6 +9,10 @@ input[type=time] {
     max-width: 8.2rem;
 }
 
+input[type=time]:hover {
+    background-color: rgba(100, 100, 100, 0.1);
+}
+
 td {
     vertical-align: middle !important;
 }

@@ -9,61 +9,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <header class="hero is-primary is-bold is-small">
-            <div class="hero-body">
-                <div class="container">
-                    <h1 class="title">
-                        Time Tracker
-                    </h1>
-                </div>
+        <div class="section">
+            <div class="container">
+                <h1 class="title has-text-light">
+                    Time Tracker
+                </h1>
             </div>
-        </header>
-        <section class="section">
             <div class="container">
                 <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                     <thead>
                         <tr>
-                            <th class="has-text-centered is-light">
+                            <th class="has-text-centered is-primary">
                                 Type
                             </th>
-                            <th class="has-text-centered is-light">
+                            <th class="has-text-centered is-primary">
                                 Start
                             </th>
-                            <th class="has-text-centered is-light">
+                            <th class="has-text-centered is-primary">
                                 End
                             </th>
-                            <th class="has-text-centered is-light">
+                            <th class="has-text-centered is-primary">
                                 Hours
                             </th>
-                            <th class="has-text-centered is-light">
-                                +/-
+                            <th class="has-text-centered is-primary">
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="entry in entries" v-bind:key="entry.id">
+                        <tr v-for="(entry, index) in entries" v-bind:key="index">
                             <td class="has-text-centered">
                                 {{entry.type}}
                             </td>
-                            <!--                             <td class="has-text-centered">
-                                <input class="input" type="text" 
-                                pattern="^(1[0-2]|0?[1-9]):[0-5][0-9] (AM|PM)$" 
-                                title="HH:MM (AM/PM)" 
-                                v-model="entry.start" 
-                                @change="calcHours">
-                            </td>
-                            <td class="has-text-centered">
-                                <input class="input" type="text" 
-                                pattern="^(1[0-2]|0?[1-9]):[0-5][0-9] (AM|PM)$" 
-                                title="HH:MM (AM/PM)" 
-                                v-model="entry.end" 
-                                @change="calcHours">
-                            </td>
-  -->
                             <td class="has-text-centered">
                                 <input type="time" class="input" v-model="entry.start" @change="calcHours">
                             </td>
@@ -74,21 +55,21 @@
                                 {{entry.hours}}
                             </td>
                             <td class="has-text-centered">
-                                <span class="icon has-text-primary">
+                                <a class="icon has-text-primary" @click="addEntry(index)" title="Add row below.">
                                     <i class="fas fa-fw fa-plus-circle"></i>
-                                </span>
-                                <span class="icon has-text-grey">
+                                </a>
+                                <a class="icon has-text-danger" @click="delEntry(index)" title="Delete row.">
                                     <i class="fas fa-fw fa-minus-circle"></i>
-                                </span>
+                                </a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-        </section>
+            </section>
+        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="main.js"></script>
+        <script src="main.js"></script>
 </body>
 
 </html>
