@@ -49,13 +49,14 @@
                                     </div>
                                 </td>
                                 <td class="has-text-centered">
-                                    <input type="time" class="input" v-model="entry.start" @change="calcHours">
+                                    <input type="time" class="input" v-model="entry.start">
                                 </td>
                                 <td class="has-text-centered">
-                                    <input type="time" class="input" v-model="entry.end" @change="calcHours">
+                                    <input type="time" class="input" v-model="entry.end">
                                 </td>
                                 <td class="has-text-centered">
-                                    {{entry.hours}}
+                                    {{rowHours(entry)}}
+                                    <!-- {{entry.hours}} -->
                                 </td>
                                 <td class="has-text-centered">
                                     <a class="icon has-text-primary" @click="addEntry(index)" title="Add row below.">
