@@ -76,10 +76,10 @@ var vm = new Vue({
         },
 
         addType: function (el) {
-
             if (this.types.indexOf(el) < 0) {
                 this.types.push(el);
             }
+            this.addTypeValue = "";
         },
 
         delType: function (el) {

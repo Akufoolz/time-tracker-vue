@@ -16,8 +16,13 @@ td, th {
     vertical-align: middle !important;
 }
 
-.tt-has-text-white {
-    color: #FFF !important;
+@media only screen and (max-width : 768px) {
+    td {
+        display:block; box-sizing:border-box; clear:both
+    }
+    th {
+        display: none;
+    }
 }
 
 .tt-is-borderless {
