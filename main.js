@@ -27,7 +27,7 @@ var vm = new Vue({
             }
         ],
 
-        types: ["-None-"],
+        types: [],
 
         addTypeValue: "",
 
@@ -57,7 +57,7 @@ var vm = new Vue({
         // add a new object to the entries array
         addEntry: function (index) {
 
-            let newEntry = { type: "-None-" };
+            let newEntry = {};
 
             // create a new table row by adding a new entry to entries array.
             this.entries.splice((index + 1), 0, newEntry);
@@ -113,9 +113,21 @@ var vm = new Vue({
 
             let v = this;
 
-            v.entries.forEach(el => {
-                if (v.types.indexOf(el.type) < 0) {
-                    v.types.push(el.type);
+            v.entries.forEach(entry => {
+                if (v.types.indexOf(entry.type) < 0) {
+                    v.types.push(entry.type);
+                }
+            });
+
+            v.types.forEach(type => {
+                let exists = false;
+                v.entries.forEach(entry => {
+                    if (type == entry.type) {
+                        exists = true;
+                    }
+                });
+                if (exists == false) {
+                    v.types.splice(v.types.indexOf(type), 1);
                 }
             });
 

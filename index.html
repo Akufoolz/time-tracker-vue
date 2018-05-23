@@ -16,7 +16,7 @@
     <div id="app">
         <section class="section">
             <div class="columns">
-                <div class="column is-10-desktop is-offset-1-desktop">
+                <div class="column is-8-desktop is-offset-2-desktop">
                     <p class="title has-text-light is-hidden-mobile">
                         Time Tracker
                     </p>
@@ -48,30 +48,35 @@
                                 </td>
                             </tr>
                             <tr v-for="(entry, index) in entries" :key="index">
-                                <td class="has-text-centered">
-                                    <div class="select is-primary">
-                                        <select class="has-text-centered tt-is-borderless">
-                                            <option v-for="(type, index) in entryTypes" :value="type" :selected="type == entry.type">{{type}}</option>
-                                        </select>
+                                <td>
+                                    <div class="control has-text-centered">
+                                        <input type="text" class="input is-shadowless is-marginless" v-model.lazy="entry.type">
                                     </div>
                                 </td>
-                                <td class="has-text-centered">
-                                    <input type="time" class="input is-shadowless" v-model="entry.start">
+                                <td>
+                                    <div class="control has-text-centered">
+                                        <input type="time" class="input is-shadowless" v-model="entry.start">
+                                    </div>
                                 </td>
-                                <td class="has-text-centered">
-                                    <input type="time" class="input is-shadowless" v-model="entry.end">
+                                <td>
+                                    <div class="control has-text-centered">
+                                        <input type="time" class="input is-shadowless" v-model="entry.end">
+                                    </div>
                                 </td>
-                                <td class="has-text-centered">
-                                    {{rowHours(entry)}}
-                                    <!-- {{entry.hours}} -->
+                                <td>
+                                    <div class="control has-text-centered">
+                                        {{rowHours(entry)}}
+                                    </div>
                                 </td>
-                                <td class="has-text-centered">
-                                    <a class="icon has-text-primary" @click="addEntry(index)" title="Add row below.">
-                                        <i class="fas fa-fw fa-plus-circle"></i>
-                                    </a>
-                                    <a class="icon has-text-danger" @click="delEntry(index)" title="Delete row.">
-                                        <i class="fas fa-fw fa-times-circle"></i>
-                                    </a>
+                                <td id="icon-column">
+                                    <div class="control has-text-centered">
+                                        <a class="icon has-text-primary" @click="addEntry(index)" title="Add row below.">
+                                            <i class="fas fa-plus-circle"></i>
+                                        </a>
+                                        <a class="icon has-text-danger" @click="delEntry(index)" title="Delete row.">
+                                            <i class="fas fa-times-circle"></i>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -105,43 +110,6 @@
                                     <span class="button tt-has-cursor-default">
                                         {{filterHours(filterSelect)}}
                                     </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column is-3">
-                            <label class="label has-text-light">Add type:</label>
-                            <div class="field has-addons">
-                                <div class="control">
-                                    <input class="input" type="text" placeholder="Type" v-model="addTypeValue">
-                                </div>
-                                <div class="control">
-                                    <button class="button" title="Add type." @click="addType(addTypeValue)">
-                                        <a class="icon has-text-primary" title="Add type.">
-                                            <i class="fas fa-plus"></i>
-                                        </a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column is-3">
-                            <label class="label has-text-light">Remove type:</label>
-                            <div class="field has-addons">
-                                <!--                                 <div class="control">
-                                    <input class="input" type="text" placeholder="Type" v-model="delTypeValue">
-                                </div> -->
-                                <div class="control">
-                                    <div class="select is-dark">
-                                        <select class="has-text-centered tt-is-borderless" v-model="delTypeValue">
-                                            <option v-for="(type, index) in entryTypes" :value="type">{{type}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="control">
-                                    <button class="button" title="Remove type." @click="delType(delTypeValue)">
-                                        <a class="icon has-text-danger" title="Remove type.">
-                                            <i class="fas fa-minus"></i>
-                                        </a>
-                                    </button>
                                 </div>
                             </div>
                         </div>

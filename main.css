@@ -14,15 +14,23 @@ input[type=time]:hover {
 
 td, th {
     vertical-align: middle !important;
+    max-width: 8.2rem;
 }
 
 @media only screen and (max-width : 768px) {
     td {
-        display:block; box-sizing:border-box; clear:both
+        display:block; box-sizing:border-box; clear:both;
+        max-width: 100%;
     }
     th {
         display: none;
     }
+    #type-input {
+        max-width: 100% !important;
+    }
+}
+
+#type-input {
 }
 
 .tt-is-borderless {
