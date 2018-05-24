@@ -50,7 +50,7 @@
                             <tr v-for="(entry, index) in entries" :key="index">
                                 <td>
                                     <div class="control has-text-centered">
-                                        <input type="text" class="input is-shadowless is-marginless" v-model.lazy="entry.type">
+                                        <input type="text" class="input is-shadowless is-marginless has-text-centered" v-model.lazy="entry.type">
                                     </div>
                                 </td>
                                 <td>
@@ -82,13 +82,13 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th class="is-primary has-text-centered">
+                                <th class="is-primary has-text-centered jg-total-th">
                                     Total:
                                 </th>
                                 <th class="is-primary"></th>
                                 <th class="is-primary has-text-centered">
                                 </th>
-                                <th class="is-primary has-text-centered">
+                                <th class="is-primary has-text-centered jg-total-th">
                                     {{totalHours}}
                                 </th>
                                 <th class="is-primary"></th>

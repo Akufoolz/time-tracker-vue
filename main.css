@@ -19,18 +19,20 @@ td, th {
 
 @media only screen and (max-width : 768px) {
     td {
-        display:block; box-sizing:border-box; clear:both;
+        display:block; 
+        box-sizing:border-box; 
+        clear:both;
         max-width: 100%;
     }
     th {
         display: none;
     }
-    #type-input {
-        max-width: 100% !important;
+    .jg-total-th {
+        display: inherit;
+        display:block; 
+        box-sizing:border-box;
+        max-width: 100%;
     }
-}
-
-#type-input {
 }
 
 .tt-is-borderless {

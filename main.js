@@ -27,6 +27,13 @@ var vm = new Vue({
             }
         ],
 
+        newEntry: {
+            type: "",
+            start: "",
+            end: "",
+            hours: ""
+        },
+
         types: [],
 
         addTypeValue: "",
@@ -57,10 +64,8 @@ var vm = new Vue({
         // add a new object to the entries array
         addEntry: function (index) {
 
-            let newEntry = {};
-
             // create a new table row by adding a new entry to entries array.
-            this.entries.splice((index + 1), 0, newEntry);
+            this.entries.splice((index + 1), 0, this.newEntry);
 
         },
 
