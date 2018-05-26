@@ -17,9 +17,27 @@
         <section class="section">
             <div class="columns">
                 <div class="column is-8-desktop is-offset-2-desktop">
-                    <p class="title has-text-light is-hidden-mobile">
-                        Time Tracker
-                    </p>
+                    <div class="columns is-hidden-mobile">
+                        <div class="column">
+                            <p class="title has-text-light is-hidden-mobile">
+                                Time Tracker
+                            </p>
+                        </div>
+
+                        <div class="column is-narrow">
+                            <div class="field">
+                                <div class="control has-text-right">
+                                    <div class="select is-dark">
+                                        <select class="has-text-centered tt-is-borderless" v-model="selectedEntry" @change="loadActiveEntry">
+                                            <option v-for="(value, key, index) in entries" :value="key">
+                                                {{convertDate(key)}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <table class="table is-striped is-hoverable is-fullwidth">
                         <thead>
                             <tr>
@@ -45,27 +63,49 @@
                                     <p class="title is-size-3 has-text-white">
                                         Time Tracker
                                     </p>
+                                    <div class="field has-addons is-inline-flex">
+                                        <div class="control">
+                                            <button class="button" @click="saveEntry(selectedEntry)">
+                                                <span class="icon has-text-primary">
+                                                    <i class="fas fa-check"></i>
+                                                </span>
+                                                <span>
+                                                    Save
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="control">
+                                            <button class="button" @click="loadActiveEntry">
+                                                <span class="icon">
+                                                    <i class="fas fa-undo-alt"></i>
+                                                </span>
+                                                <span>
+                                                    Reset
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
-                            <tr v-for="(entry, index) in entries" :key="index">
+                            <tr v-for="(row, index) in activeEntry" :key="index">
                                 <td>
                                     <div class="control has-text-centered">
-                                        <input type="text" class="input is-shadowless is-marginless has-text-centered" v-model.lazy="entry.type">
+                                        <input type="text" class="input is-shadowless is-marginless has-text-centered" v-model.lazy="row.type">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="control has-text-centered">
-                                        <input type="time" class="input is-shadowless" v-model="entry.start">
+                                        <input type="time" class="input is-shadowless" v-model="row.start">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="control has-text-centered">
-                                        <input type="time" class="input is-shadowless" v-model="entry.end">
+                                        <input type="time" class="input is-shadowless" v-model="row.end">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="control has-text-centered">
-                                        {{rowHours(entry)}}
+                                        {{rowHours(row)}}
                                     </div>
                                 </td>
                                 <td id="icon-column">
@@ -82,23 +122,27 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th class="is-primary has-text-centered jg-total-th">
+                                <th class="is-primary has-text-centered tt-total-th">
                                     Total:
                                 </th>
-                                <th class="is-primary"></th>
+                                <th class="is-primary">
+                                </th>
                                 <th class="is-primary has-text-centered">
                                 </th>
-                                <th class="is-primary has-text-centered jg-total-th">
+                                <th class="is-primary has-text-centered tt-total-th">
                                     {{totalHours}}
                                 </th>
-                                <th class="is-primary"></th>
+                                <th class="is-primary">
+                                </th>
                             </tr>
                         </tfoot>
                     </table>
                     <div class="columns">
                         <div class="column is-narrow">
-                            <p class="label has-text-light">Total hours by type:</p>
                             <div class="field has-addons">
+                                <div class="control">
+                                    <span class="button tt-has-cursor-default tt-is-borderless">Type Total:</span>
+                                </div>
                                 <div class="control">
                                     <div class="select is-dark">
                                         <select class="has-text-centered tt-is-borderless" v-model="filterSelect">
@@ -107,9 +151,34 @@
                                     </div>
                                 </div>
                                 <div class="control">
-                                    <span class="button tt-has-cursor-default">
+                                    <span class="button tt-has-cursor-default tt-is-borderless">
                                         {{filterHours(filterSelect)}}
                                     </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-hidden-mobile"></div>
+                        <div class="column is-narrow is-hidden-mobile">
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <button class="button" @click="saveEntry(selectedEntry)">
+                                        <span class="icon has-text-primary">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                        <span>
+                                            Save
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="control">
+                                    <button class="button" @click="loadActiveEntry">
+                                        <span class="icon">
+                                            <i class="fas fa-undo-alt"></i>
+                                        </span>
+                                        <span>
+                                            Reset
+                                        </span>
+                                    </button>
                                 </div>
                             </div>
                         </div>

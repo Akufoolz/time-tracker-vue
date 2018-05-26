@@ -27,7 +27,7 @@ td, th {
     th {
         display: none;
     }
-    .jg-total-th {
+    .tt-total-th {
         display: inherit;
         display:block; 
         box-sizing:border-box;

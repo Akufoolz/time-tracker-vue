@@ -4,28 +4,63 @@ var vm = new Vue({
 
     data: {
 
-        entries: [
+        entries: {
 
-            {
-                type: "Cases",
-                start: "08:00",
-                end: "08:45",
-                hours: ""
-            },
-            {
-                type: "Meeting",
-                start: "08:45",
-                end: "12:00",
-                hours: ""
+            "2018-05-25": [
 
-            },
-            {
-                type: "Training",
-                start: "12:30",
-                end: "16:30",
-                hours: ""
-            }
-        ],
+                {
+                    type: "Cases",
+                    start: "08:00",
+                    end: "08:45",
+                    hours: ""
+                },
+                {
+                    type: "Meeting",
+                    start: "08:45",
+                    end: "12:00",
+                    hours: ""
+
+                },
+                {
+                    type: "Training",
+                    start: "12:30",
+                    end: "16:30",
+                    hours: ""
+                }
+            ],
+
+            "2018-05-26": [
+
+                {
+                    type: "Heart",
+                    start: "08:00",
+                    end: "08:45",
+                    hours: ""
+                },
+                {
+                    type: "My",
+                    start: "08:45",
+                    end: "09:15",
+                    hours: ""
+                },
+                {
+                    type: "Honey",
+                    start: "09:15",
+                    end: "12:00",
+                    hours: ""
+
+                },
+                {
+                    type: "Bunny",
+                    start: "12:30",
+                    end: "16:30",
+                    hours: ""
+                }
+            ]
+
+        },
+
+        activeEntry: [],
 
         newEntry: {
             type: "",
@@ -34,17 +69,51 @@ var vm = new Vue({
             hours: ""
         },
 
-        types: [],
+        types: ["Type Total"],
 
         addTypeValue: "",
 
         delTypeValue: "",
 
-        filterSelect: ""
+        filterSelect: "",
+
+        selectedEntry: "",
 
     },
 
     methods: {
+
+        loadActiveEntry: function () {
+
+            let v = this;
+
+            for (let i = 0; i < v.activeEntry.length;) {
+                let item = v.activeEntry[i];
+                v.activeEntry.pop(item);
+            }
+            
+            v.entries[v.selectedEntry].forEach(item => {
+                v.activeEntry.push(item);
+            });
+
+        },
+
+        saveEntry: function (entry) {
+
+            let v = this;
+
+            for (let i = 0; i < v.entries[entry].length;) {
+                let item = v.entries[entry][i];
+                v.entries[entry].pop(item);
+            }
+
+            v.activeEntry.forEach(item => {
+                v.entries[entry].push(item);
+            });
+
+            alert("Save successful.")
+
+        },
 
         // calculate hour total on current row
         rowHours: function (entry) {
@@ -65,7 +134,7 @@ var vm = new Vue({
         addEntry: function (index) {
 
             // create a new table row by adding a new entry to entries array.
-            this.entries.splice((index + 1), 0, this.newEntry);
+            this.activeEntry.splice((index + 1), 0, this.newEntry);
 
         },
 
@@ -73,8 +142,8 @@ var vm = new Vue({
         delEntry: function (index) {
 
             // only remove entry if there are more than one
-            if (this.entries.length != 1) {
-                this.entries.splice(index, 1);
+            if (this.activeEntry.length != 1) {
+                this.activeEntry.splice(index, 1);
             } else {
                 alert("You cannot remove the only existing row.");
             }
@@ -99,7 +168,7 @@ var vm = new Vue({
             let v = this;
             let hours = 0;
 
-            v.entries.forEach(el => {
+            v.activeEntry.forEach(el => {
                 if (el.type == type) {
                     hours += parseFloat(el.hours);
                 }
@@ -107,6 +176,11 @@ var vm = new Vue({
 
             return hours.toFixed(2);
 
+        },
+
+        convertDate: function (string) {
+            let date = new Date(string).toDateString();
+            return date;
         }
 
     },
@@ -118,7 +192,7 @@ var vm = new Vue({
 
             let v = this;
 
-            v.entries.forEach(entry => {
+            v.activeEntry.forEach(entry => {
                 if (v.types.indexOf(entry.type) < 0) {
                     v.types.push(entry.type);
                 }
@@ -126,7 +200,7 @@ var vm = new Vue({
 
             v.types.forEach(type => {
                 let exists = false;
-                v.entries.forEach(entry => {
+                v.activeEntry.forEach(entry => {
                     if (type == entry.type) {
                         exists = true;
                     }
@@ -145,7 +219,7 @@ var vm = new Vue({
             let v = this;
             let total = 0;
 
-            v.entries.forEach(el => {
+            v.activeEntry.forEach(el => {
                 total += parseFloat(el.hours);
             });
 
@@ -156,7 +230,7 @@ var vm = new Vue({
 
     beforeMount() {
 
-        this.setEntryTypes;
+        this.loadActiveEntry();
 
     }
 });
