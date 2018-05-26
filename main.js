@@ -1,3 +1,9 @@
+// TODO:    Fix NaN bug
+//          Create new date button/functionality
+//          Add date dropdown to mobile view
+//          Add clear button funcitonality
+//          Add clear button to mobile view 
+
 var vm = new Vue({
 
     el: '#app',
