@@ -1,6 +1,5 @@
 //          TODO:
-//          Create new date button/functionality
-//          Implement clear button functionality
+//          Implement delete date button
 //          Save/Load data from LocalStorage
 //          Add date dropdown to mobile view
 //          Add clear button to mobile view 
@@ -12,29 +11,6 @@ var vm = new Vue({
     data: {
 
         entries: {
-
-            "2018-05-25": [
-
-                {
-                    type: "Cases",
-                    start: "08:00",
-                    end: "08:45",
-                    hours: ""
-                },
-                {
-                    type: "Meeting",
-                    start: "08:45",
-                    end: "12:00",
-                    hours: ""
-
-                },
-                {
-                    type: "Training",
-                    start: "12:30",
-                    end: "16:30",
-                    hours: ""
-                }
-            ],
 
             "2018-05-26": [
 
@@ -63,7 +39,30 @@ var vm = new Vue({
                     end: "16:30",
                     hours: ""
                 }
-            ]
+            ],
+
+            "2018-05-25": [
+
+                {
+                    type: "Cases",
+                    start: "08:00",
+                    end: "08:45",
+                    hours: ""
+                },
+                {
+                    type: "Meeting",
+                    start: "08:45",
+                    end: "12:00",
+                    hours: ""
+
+                },
+                {
+                    type: "Training",
+                    start: "12:30",
+                    end: "16:30",
+                    hours: ""
+                }
+            ],
 
         },
 
@@ -137,6 +136,11 @@ var vm = new Vue({
 
             alert("Save successful.")
 
+        },
+
+        clearAllRows: function () {
+            this.clearActiveEntry();
+            this.addEntry(0);
         },
 
         // calculate hour total on current row
@@ -214,8 +218,13 @@ var vm = new Vue({
         },
 
         convertDate: function (string) {
-            let date = new Date(string).toDateString();
-            return date;
+
+            let date = new Date(string);
+            
+            // remove unwanted offset to avoid date being one day off
+            let date2 = new Date( date.getTime() - date.getTimezoneOffset() * -60000 )
+
+            return date2.toDateString();
         },
 
         showDatePicker: function () {
@@ -226,14 +235,13 @@ var vm = new Vue({
 
             let v = this;
             let newDate = [];
-            this.clearActiveEntry();
-            this.addEntry(0);
+            this.clearAllRows();
             v.activeEntry.forEach(row => {
                 newDate.push(row);
             });
-            v.entries.splice(0, 0, newDate);
-            //this.saveEntry(this.newDateValue);
-            this.showDatePicker();
+            v.$set(v.entries, v.newDateValue, newDate);
+            v.selectedEntry = this.newDateValue;
+            v.showDatePicker();
 
         }
 
