@@ -220,9 +220,9 @@ var vm = new Vue({
         convertDate: function (string) {
 
             let date = new Date(string);
-            
+
             // remove unwanted offset to avoid date being one day off
-            let date2 = new Date( date.getTime() - date.getTimezoneOffset() * -60000 )
+            let date2 = new Date(date.getTime() - date.getTimezoneOffset() * -60000)
 
             return date2.toDateString();
         },
@@ -243,6 +243,22 @@ var vm = new Vue({
             v.selectedEntry = this.newDateValue;
             v.showDatePicker();
 
+        },
+
+        saveAllData: function () {
+            let allData = this.entries;
+            localStorage.setItem('allData', JSON.stringify(allData));
+        },
+
+        loadAllData: function () {
+            let pulledObject = localStorage.getItem('allData');
+            let allData = JSON.parse(pulledObject);
+            vm.$set(vm.data, 'entries', allData);
+        },
+
+        deleteEntries: function () {
+            let obj = {};
+            vm.$set(vm.data, 'entries', obj);
         }
 
     },
