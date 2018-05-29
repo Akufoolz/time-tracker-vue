@@ -42,7 +42,7 @@ var vm = new Vue({
     methods: {
 
         checkMonth: function () {
-            if((new Date().getMonth +1) > 9) {
+            if ((new Date().getMonth + 1) > 9) {
                 return "-";
             } else {
                 return "-0";
@@ -92,8 +92,22 @@ var vm = new Vue({
         },
 
         clearAllRows: function () {
-            this.clearActiveEntry();
-            this.addRow(0);
+            let answer = confirm("Are you sure you want to clear all rows?");
+            if (answer == true) {
+                this.clearActiveEntry();
+                this.addRow(0);
+            } else {
+                return;
+            }
+        },
+
+        resetDate: function () {
+            let answer = confirm("Are you sure yout want to revert to the last save?")
+            if (answer == true) {
+                this.loadActiveEntry();
+            } else {
+                return;
+            }
         },
 
         // calculate hour total on current row
@@ -199,9 +213,14 @@ var vm = new Vue({
         },
 
         deleteDate: function (date) {
-            Vue.delete(this.entries, date);
-            this.clearAllRows();
-            this.selectedEntry = "Select Date";
+            let answer = confirm("Are you sure you want to delete this date?");
+            if (answer == true) {
+                Vue.delete(this.entries, date);
+                this.clearAllRows();
+                this.selectedEntry = "Select Date";
+            } else {
+                return;
+            }
         },
 
         saveAllData: function () {
