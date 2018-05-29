@@ -82,7 +82,7 @@ var vm = new Vue({
 
         delTypeValue: "",
 
-        filterSelect: "",
+        filterSelect: "Select Type",
 
         selectedEntry: "Select Date",
 

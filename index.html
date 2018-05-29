@@ -151,12 +151,15 @@
                     <div class="columns">
                         <div class="column is-narrow">
                             <div class="field has-addons">
+                                <!-- 
                                 <div class="control">
                                     <span class="button tt-has-cursor-default tt-is-borderless">Type Total:</span>
                                 </div>
+-->
                                 <div class="control">
                                     <div class="select is-dark">
                                         <select class="has-text-centered tt-is-borderless" v-model="filterSelect">
+                                            <option disabled>Select Type</option>
                                             <option v-for="(type, index) in entryTypes" :value="type">{{type}}</option>
                                         </select>
                                     </div>
