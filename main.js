@@ -1,7 +1,8 @@
-// TODO:    Fix NaN bug
+//          TODO:
 //          Create new date button/functionality
+//          Implement clear button functionality
+//          Save/Load data from LocalStorage
 //          Add date dropdown to mobile view
-//          Add clear button funcitonality
 //          Add clear button to mobile view 
 
 var vm = new Vue({
@@ -66,16 +67,16 @@ var vm = new Vue({
 
         },
 
-        activeEntry: [],
+        activeEntry: [
+            {
+                type: "",
+                start: "00:00",
+                end: "12:00",
+                hours: ""
+            }
+        ],
 
-        newEntry: {
-            type: "",
-            start: "",
-            end: "",
-            hours: ""
-        },
-
-        types: ["Type Total"],
+        types: [],
 
         addTypeValue: "",
 
@@ -83,7 +84,7 @@ var vm = new Vue({
 
         filterSelect: "",
 
-        selectedEntry: "",
+        selectedEntry: "Select Date",
 
     },
 
@@ -97,7 +98,7 @@ var vm = new Vue({
                 let item = v.activeEntry[i];
                 v.activeEntry.pop(item);
             }
-            
+
             v.entries[v.selectedEntry].forEach(item => {
                 v.activeEntry.push(item);
             });
@@ -132,15 +133,26 @@ var vm = new Vue({
 
             entry.hours = hours;
 
-            return entry.hours;
+            if (!(isNaN(entry.hours))) {
+                return entry.hours;
+            } else {
+                return "0.00" ;
+            }
 
         },
 
         // add a new object to the entries array
         addEntry: function (index) {
 
+            let newEntry = {
+                type: "",
+                start: "",
+                end: "",
+                hours: ""
+            };
+
             // create a new table row by adding a new entry to entries array.
-            this.activeEntry.splice((index + 1), 0, this.newEntry);
+            this.activeEntry.splice((index + 1), 0, newEntry);
 
         },
 
@@ -226,7 +238,9 @@ var vm = new Vue({
             let total = 0;
 
             v.activeEntry.forEach(el => {
-                total += parseFloat(el.hours);
+                if (!(isNaN(el.hours))) {
+                    total += parseFloat(el.hours);
+                }
             });
 
             return total.toFixed(2);
@@ -235,8 +249,6 @@ var vm = new Vue({
     },
 
     beforeMount() {
-
-        this.loadActiveEntry();
 
     }
 });

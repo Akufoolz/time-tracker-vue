@@ -42,3 +42,7 @@ td, th {
 .tt-has-cursor-default {
     cursor: default !important;
 }
+
+.tt-no-pad-right {
+    padding-right: 0 !important;
+}

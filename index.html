@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
@@ -23,12 +22,24 @@
                                 Time Tracker
                             </p>
                         </div>
-
+                        <div class="column is-narrow tt-no-pad-right">
+                            <div class="control has-text-right">
+                                <button class="button" @click="">
+                                    <span class="icon">
+                                        <i class="far fa-calendar-plus"></i>
+                                    </span>
+                                    <span>
+                                        New
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
                         <div class="column is-narrow">
                             <div class="field">
                                 <div class="control has-text-right">
                                     <div class="select is-dark">
                                         <select class="has-text-centered tt-is-borderless" v-model="selectedEntry" @change="loadActiveEntry">
+                                            <option disabled>Select Date</option>
                                             <option v-for="(value, key, index) in entries" :value="key">
                                                 {{convertDate(key)}}
                                             </option>
@@ -197,6 +208,7 @@
             </div>
         </section>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="main.js"></script>
 </body>
 
