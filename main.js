@@ -87,16 +87,25 @@ var vm = new Vue({
 
         delTypeValue: "",
 
-        newDateValue: "",
+        newDateValue: new Date().getFullYear() + (((new Date().getMonth + 1) > 9) ? "-" : "-0") + (new Date().getMonth() + 1) + "-" + new Date().getDate(),
 
         filterSelect: "Select Type",
 
         selectedEntry: "Select Date",
 
-        newDateToggle: [true, false]
+        newDateToggle: [true, false],
+
     },
 
     methods: {
+
+        checkMonth: function () {
+            if((new Date().getMonth +1) > 9) {
+                return "-";
+            } else {
+                return "-0";
+            }
+        },
 
         loadActiveEntry: function () {
 
@@ -304,7 +313,8 @@ var vm = new Vue({
             });
 
             return total.toFixed(2);
-        }
+        },
+
 
     },
 
