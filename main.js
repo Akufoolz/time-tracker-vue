@@ -88,6 +88,8 @@ var vm = new Vue({
 
         delTypeValue: "",
 
+        newDateValue: "",
+
         filterSelect: "Select Type",
 
         selectedEntry: "Select Date",
@@ -101,14 +103,22 @@ var vm = new Vue({
 
             let v = this;
 
-            for (let i = 0; i < v.activeEntry.length;) {
-                let item = v.activeEntry[i];
-                v.activeEntry.pop(item);
-            }
+            this.clearActiveEntry();
 
             v.entries[v.selectedEntry].forEach(item => {
                 v.activeEntry.push(item);
             });
+
+        },
+
+        clearActiveEntry: function () {
+
+            let v = this;
+
+            for (let i = 0; i < v.activeEntry.length;) {
+                let item = v.activeEntry[i];
+                v.activeEntry.pop(item);
+            }
 
         },
 
@@ -143,7 +153,7 @@ var vm = new Vue({
             if (!(isNaN(entry.hours))) {
                 return entry.hours;
             } else {
-                return "0.00" ;
+                return "0.00";
             }
 
         },
@@ -212,8 +222,19 @@ var vm = new Vue({
             this.newDateToggle.reverse();
         },
 
-        addNewDate: function(date) {
+        addNewDate: function (date) {
+
+            let v = this;
+            let newDate = [];
+            this.clearActiveEntry();
+            this.addEntry(0);
+            v.activeEntry.forEach(row => {
+                newDate.push(row);
+            });
+            v.entries.splice(0, 0, newDate);
+            //this.saveEntry(this.newDateValue);
             this.showDatePicker();
+
         }
 
     },

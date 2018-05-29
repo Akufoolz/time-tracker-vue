@@ -25,10 +25,10 @@
                         <div class="column is-narrow tt-no-padding-bottom tt-no-padding-right">
                             <div class="field has-addons" :class="{'tt-is-hidden':newDateToggle[0]}">
                                 <div class="control">
-                                    <input type="date" class="input tt-is-borderless tt-no-pad-right"/>
+                                    <input type="date" class="input tt-is-borderless tt-no-pad-right" v-model="newDateValue"/>
                                 </div>
                                 <div class="control has-text-right">
-                                    <button class="button" @click="addNewDate()">
+                                    <button class="button" @click="addNewDate(newDateValue)">
                                         <span class="icon">
                                             <i class="far fa-calendar-plus"></i>
                                         </span>
