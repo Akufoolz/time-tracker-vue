@@ -59,13 +59,12 @@
                                             <option disabled>Select Date</option>
                                             <option v-for="(value, key, index) in entries" :value="key">
                                                 {{convertDate(key)}}
-                                                <a class="delete"></a>
                                             </option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="control">
-                                    <button class="button tt-has-border-left" title="Delete current date." @click="deleteDate(selectedEntry)">
+                                    <button class="button tt-has-border-left" :class="{'is-static':disableButton}" title="Delete current date." @click="deleteDate(selectedEntry)">
                                         <span class="icon has-text-danger">
                                             <i class="fas fa-times"></i>
                                         </span>
@@ -101,7 +100,7 @@
                                     </p>
                                     <div class="field has-addons is-inline-flex">
                                         <div class="control">
-                                            <button class="button" title="Save current entries" @click="saveEntry(selectedEntry)">
+                                            <button class="button" :class="{'is-static':disableButton}" title="Save current entries" @click="saveEntry(selectedEntry)">
                                                 <span class="icon has-text-primary">
                                                     <i class="fas fa-check"></i>
                                                 </span>
@@ -111,7 +110,7 @@
                                             </button>
                                         </div>
                                         <div class="control">
-                                            <button class="button" title="Reset entries" @click="loadActiveEntry">
+                                            <button class="button" :class="{'is-static':disableButton}" title="Reset entries" @click="loadActiveEntry">
                                                 <span class="icon">
                                                     <i class="fas fa-undo-alt"></i>
                                                 </span>
@@ -195,7 +194,7 @@
                         <div class="column is-narrow is-hidden-mobile">
                             <div class="field has-addons">
                                 <div class="control">
-                                    <button class="button" title="Save entries" @click="saveEntry(selectedEntry)">
+                                    <button class="button" :class="{'is-static':disableButton}" title="Save entries" @click="saveEntry(selectedEntry)">
                                         <span class="icon has-text-primary">
                                             <i class="fas fa-check"></i>
                                         </span>
@@ -205,7 +204,7 @@
                                     </button>
                                 </div>
                                 <div class="control">
-                                    <button class="button" title="Reset entries" @click="loadActiveEntry">
+                                    <button class="button" :class="{'is-static':disableButton}"title="Reset entries" @click="loadActiveEntry">
                                         <span class="icon">
                                             <i class="fas fa-undo-alt"></i>
                                         </span>

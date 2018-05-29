@@ -270,6 +270,9 @@ var vm = new Vue({
             return total.toFixed(2);
         },
 
+        disableButton: function () {
+            return (this.selectedEntry === "Select Date") ? true : false;
+        }
 
     },
 
