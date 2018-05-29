@@ -1,5 +1,4 @@
 //          TODO:
-//          Implement delete date button
 //          Add date dropdown to mobile view
 //          Add clear button to mobile view 
 
