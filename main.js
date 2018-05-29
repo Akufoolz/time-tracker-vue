@@ -12,58 +12,6 @@ var vm = new Vue({
 
         entries: {
 
-            "2018-05-26": [
-
-                {
-                    type: "Heart",
-                    start: "08:00",
-                    end: "08:45",
-                    hours: ""
-                },
-                {
-                    type: "My",
-                    start: "08:45",
-                    end: "09:15",
-                    hours: ""
-                },
-                {
-                    type: "Honey",
-                    start: "09:15",
-                    end: "12:00",
-                    hours: ""
-
-                },
-                {
-                    type: "Bunny",
-                    start: "12:30",
-                    end: "16:30",
-                    hours: ""
-                }
-            ],
-
-            "2018-05-25": [
-
-                {
-                    type: "Cases",
-                    start: "08:00",
-                    end: "08:45",
-                    hours: ""
-                },
-                {
-                    type: "Meeting",
-                    start: "08:45",
-                    end: "12:00",
-                    hours: ""
-
-                },
-                {
-                    type: "Training",
-                    start: "12:30",
-                    end: "16:30",
-                    hours: ""
-                }
-            ],
-
         },
 
         activeEntry: [
@@ -142,6 +90,8 @@ var vm = new Vue({
             v.activeEntry.forEach(item => {
                 v.entries[entry].push(item);
             });
+
+            this.saveAllData();
 
             alert("Save successful.")
 
@@ -257,12 +207,13 @@ var vm = new Vue({
         saveAllData: function () {
             let allData = this.entries;
             localStorage.setItem('allData', JSON.stringify(allData));
+            console.log("Saved data to LocalStorage.");
         },
 
         loadAllData: function () {
-            let pulledObject = localStorage.getItem('allData');
-            let allData = JSON.parse(pulledObject);
-            vm.$set(vm.data, 'entries', allData);
+            let allData = JSON.parse(localStorage.getItem('allData'));
+            Object.assign(this.$data.entries, allData)
+            console.log("Loaded data from LocalStorage.");
         },
 
         deleteEntries: function () {
@@ -319,6 +270,6 @@ var vm = new Vue({
     },
 
     beforeMount() {
-
+        this.loadAllData();
     }
 });
