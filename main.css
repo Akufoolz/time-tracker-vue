@@ -60,9 +60,9 @@ td, th {
 }
 
 .tt-has-border-left {
-    border-top: none;
-    border-right: none;
-    border-bottom: none;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
 }
 
 .tt-is-hidden {

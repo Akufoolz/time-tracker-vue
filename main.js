@@ -1,6 +1,5 @@
 //          TODO:
 //          Implement delete date button
-//          Save/Load data from LocalStorage
 //          Add date dropdown to mobile view
 //          Add clear button to mobile view 
 
@@ -99,7 +98,7 @@ var vm = new Vue({
 
         clearAllRows: function () {
             this.clearActiveEntry();
-            this.addEntry(0);
+            this.addRow(0);
         },
 
         // calculate hour total on current row
@@ -122,7 +121,7 @@ var vm = new Vue({
         },
 
         // add a new object to the entries array
-        addEntry: function (index) {
+        addRow: function (index) {
 
             let newEntry = {
                 type: "",
@@ -137,7 +136,7 @@ var vm = new Vue({
         },
 
         // remove entry from entries array
-        delEntry: function (index) {
+        delRow: function (index) {
 
             // only remove entry if there are more than one
             if (this.activeEntry.length != 1) {
@@ -202,6 +201,12 @@ var vm = new Vue({
             v.selectedEntry = this.newDateValue;
             v.showDatePicker();
 
+        },
+
+        deleteDate: function (date) {
+            Vue.delete(this.entries, date);
+            this.clearAllRows();
+            this.selectedEntry = "Select Date";
         },
 
         saveAllData: function () {

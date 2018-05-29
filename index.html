@@ -52,16 +52,24 @@
                             </div>
                         </div>
                         <div class="column is-narrow">
-                            <div class="field">
+                            <div class="field has-addons">
                                 <div class="control has-text-right">
                                     <div class="select is-dark">
                                         <select class="has-text-centered tt-is-borderless" v-model="selectedEntry" @change="loadActiveEntry">
                                             <option disabled>Select Date</option>
                                             <option v-for="(value, key, index) in entries" :value="key">
                                                 {{convertDate(key)}}
+                                                <a class="delete"></a>
                                             </option>
                                         </select>
                                     </div>
+                                </div>
+                                <div class="control">
+                                    <button class="button tt-has-border-left" title="Delete current date." @click="deleteDate(selectedEntry)">
+                                        <span class="icon has-text-danger">
+                                            <i class="fas fa-times"></i>
+                                        </span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -138,10 +146,10 @@
                                 </td>
                                 <td id="icon-column">
                                     <div class="control has-text-centered">
-                                        <a class="icon has-text-primary" @click="addEntry(index)" title="Add row below.">
+                                        <a class="icon has-text-primary" @click="addRow(index)" title="Add row below.">
                                             <i class="fas fa-plus-circle"></i>
                                         </a>
-                                        <a class="icon has-text-danger" @click="delEntry(index)" title="Delete row.">
+                                        <a class="icon has-text-danger" @click="delRow(index)" title="Delete row.">
                                             <i class="fas fa-times-circle"></i>
                                         </a>
                                     </div>
