@@ -91,14 +91,21 @@ var vm = new Vue({
 
         },
 
-        clearAllRows: function () {
-            let answer = confirm("Are you sure you want to clear all rows?");
-            if (answer == true) {
+        // function to clear all rows and add one blank row. Pass boolean to use confirm alert or not.
+        clearAllRows: function (bool) {
+            if (bool == true) {
+                let answer = confirm("Are you sure you want to clear all rows?");
+                if (answer == true) {
+                    this.clearActiveEntry();
+                    this.addRow(0);
+                } else {
+                    return;
+                }
+            } else if (bool == false) {
                 this.clearActiveEntry();
                 this.addRow(0);
-            } else {
-                return;
             }
+
         },
 
         resetDate: function () {
@@ -202,7 +209,7 @@ var vm = new Vue({
 
             let v = this;
             let newDate = [];
-            this.clearAllRows();
+            this.clearAllRows(false);
             v.activeEntry.forEach(row => {
                 newDate.push(row);
             });
@@ -216,7 +223,7 @@ var vm = new Vue({
             let answer = confirm("Are you sure you want to delete this date?");
             if (answer == true) {
                 Vue.delete(this.entries, date);
-                this.clearAllRows();
+                this.clearAllRows(false);
                 this.selectedEntry = "Select Date";
             } else {
                 return;
