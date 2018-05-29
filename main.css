@@ -43,6 +43,28 @@ td, th {
     cursor: default !important;
 }
 
-.tt-no-pad-right {
+.tt-no-padding-top {
+    padding-top: 0 !important;
+}
+
+.tt-no-padding-right {
     padding-right: 0 !important;
+}
+
+.tt-no-padding-bottom {
+    padding-bottom: 0 !important;
+}
+
+.tt-no-padding-left {
+    padding-left: 0 !important;
+}
+
+.tt-has-border-left {
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+.tt-is-hidden {
+    display: none !important;
 }

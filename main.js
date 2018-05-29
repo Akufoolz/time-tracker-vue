@@ -73,6 +73,12 @@ var vm = new Vue({
                 start: "00:00",
                 end: "12:00",
                 hours: ""
+            },
+            {
+                type: "",
+                start: "",
+                end: "",
+                hours: ""
             }
         ],
 
@@ -86,6 +92,7 @@ var vm = new Vue({
 
         selectedEntry: "Select Date",
 
+        newDateToggle: [true, false]
     },
 
     methods: {
@@ -199,6 +206,14 @@ var vm = new Vue({
         convertDate: function (string) {
             let date = new Date(string).toDateString();
             return date;
+        },
+
+        showDatePicker: function () {
+            this.newDateToggle.reverse();
+        },
+
+        addNewDate: function(date) {
+            this.showDatePicker();
         }
 
     },

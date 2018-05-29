@@ -22,16 +22,33 @@
                                 Time Tracker
                             </p>
                         </div>
-                        <div class="column is-narrow tt-no-pad-right">
-                            <div class="control has-text-right">
-                                <button class="button" @click="">
-                                    <span class="icon">
-                                        <i class="far fa-calendar-plus"></i>
-                                    </span>
-                                    <span>
-                                        New
-                                    </span>
-                                </button>
+                        <div class="column is-narrow tt-no-padding-bottom tt-no-padding-right">
+                            <div class="field has-addons" :class="{'tt-is-hidden':newDateToggle[0]}">
+                                <div class="control">
+                                    <input type="date" class="input tt-is-borderless tt-no-pad-right"/>
+                                </div>
+                                <div class="control has-text-right">
+                                    <button class="button" @click="addNewDate()">
+                                        <span class="icon">
+                                            <i class="far fa-calendar-plus"></i>
+                                        </span>
+                                        <span>
+                                            Add
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="field" :class="{'tt-is-hidden':newDateToggle[1]}">
+                                <div class="control has-text-right">
+                                    <button class="button tt-is-borderless" @click="showDatePicker()">
+                                        <span class="icon">
+                                            <i class="far fa-calendar-plus"></i>
+                                        </span>
+                                        <span>
+                                            New
+                                        </span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="column is-narrow">
@@ -101,7 +118,7 @@
                             <tr v-for="(row, index) in activeEntry" :key="index">
                                 <td>
                                     <div class="control has-text-centered">
-                                        <input type="text" class="input is-shadowless is-marginless has-text-centered" v-model.lazy="row.type">
+                                        <input type="text" class="input is-shadowless is-marginless has-text-centered" placeholder="Type" v-model.lazy="row.type">
                                     </div>
                                 </td>
                                 <td>
