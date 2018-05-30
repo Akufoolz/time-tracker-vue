@@ -258,7 +258,9 @@ var vm = new Vue({
 
             v.activeEntry.forEach(entry => {
                 if (v.types.indexOf(entry.type) < 0) {
-                    v.types.push(entry.type);
+                    if (entry.type != "") {
+                        v.types.push(entry.type);
+                    }
                 }
             });
 
