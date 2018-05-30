@@ -98,29 +98,7 @@
                                     <p class="title is-size-3 has-text-white">
                                         Time Tracker
                                     </p>
-                                    <div class="field has-addons is-inline-flex">
-                                        <div class="control">
-                                            <button class="button" :class="{'is-static':disableButton}" title="Save current entries" @click="saveEntry(selectedEntry)">
-                                                <span class="icon has-text-primary">
-                                                    <i class="fas fa-lg fa-save"></i>
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="control">
-                                            <button class="button" :class="{'is-static':disableButton}" title="Reset entries" @click="resetDate()">
-                                                <span class="icon">
-                                                    <i class="fas fa-lg fa-undo-alt"></i>
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="control">
-                                            <button class="button" :class="{'is-static':disableButton}" title="Clear all entries" @click="clearAllRows(true)">
-                                                <span class="icon">
-                                                    <i class="far fa-lg fa-trash-alt"></i>
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
+
                                     <div class="field has-addons is-inline-flex" :class="{'tt-is-hidden':newDateToggle[0]}">
                                         <div class="control">
                                             <input type="date" class="input tt-is-borderless tt-no-pad-right" v-model="newDateValue">
@@ -130,6 +108,9 @@
                                                 <span class="icon">
                                                     <i class="far fa-lg fa-calendar-check"></i>
                                                 </span>
+                                                <span>
+                                                    Add
+                                                </span>
                                             </button>
                                         </div>
                                     </div>
@@ -138,6 +119,9 @@
                                             <button class="button tt-is-borderless" title="Show new date picker" @click="showDatePicker()">
                                                 <span class="icon">
                                                     <i class="far fa-lg fa-calendar-plus"></i>
+                                                </span>
+                                                <span>
+                                                    New
                                                 </span>
                                             </button>
                                         </div>
@@ -157,6 +141,39 @@
                                             <button class="button tt-has-border-left" :class="{'is-static':disableButton}" title="Delete current date." @click="deleteDate(selectedEntry)">
                                                 <span class="icon has-text-danger">
                                                     <i class="fas fa-lg fa-times"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="field has-addons is-inline-flex">
+                                        <div class="control">
+                                            <button class="button" :class="{'is-static':disableButton}" title="Save current entries" @click="saveEntry(selectedEntry)">
+                                                <span class="icon has-text-primary">
+                                                    <i class="fas fa-lg fa-save"></i>
+                                                </span>
+                                                <span>
+                                                    Save
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="control">
+                                            <button class="button" :class="{'is-static':disableButton}" title="Reset entries" @click="resetDate()">
+                                                <span class="icon">
+                                                    <i class="fas fa-lg fa-undo-alt"></i>
+                                                </span>
+                                                <span>
+                                                    Reset
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="control">
+                                            <button class="button" :class="{'is-static':disableButton}" title="Clear all entries" @click="clearAllRows(true)">
+                                                <span class="icon">
+                                                    <i class="far fa-lg fa-trash-alt"></i>
+                                                </span>
+                                                <span>
+                                                    Clear
                                                 </span>
                                             </button>
                                         </div>
