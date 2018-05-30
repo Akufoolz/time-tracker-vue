@@ -73,7 +73,7 @@
                             </div>
                         </div>
                     </div>
-                    <table class="table is-striped is-hoverable is-fullwidth">
+                    <table class="table is-striped is-fullwidth">
                         <thead>
                             <tr>
                                 <th class="has-text-centered is-primary">
@@ -195,8 +195,9 @@
                                     </div>
                                 </td>
                             </tr>
+                            <td class="is-hidden-tablet"></td>
                         </tbody>
-                        <tfoot>
+                        <tfoot class="is-hidden-mobile">
                             <tr>
                                 <th class="is-primary has-text-centered tt-total-th">
                                     Total:
@@ -209,6 +210,13 @@
                                     {{totalHours}}
                                 </th>
                                 <th class="is-primary">
+                                </th>
+                            </tr>
+                        </tfoot>
+                        <tfoot class="is-hidden-tablet">
+                            <tr>
+                                <th class="is-primary has-text-centered tt-total-th">
+                                    Total Hours: {{totalHours}}
                                 </th>
                             </tr>
                         </tfoot>
