@@ -2,6 +2,4 @@
 Rewrite of time-tracker using vue.js
 
 ## TODO:
-* Add date dropdown to mobile view
-* Add new/delete date buttons to mobile view
-* Add clear button to mobile view 
+* Fix last table cell border in mobile view.

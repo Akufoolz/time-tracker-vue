@@ -30,7 +30,7 @@
                                 <div class="control has-text-right">
                                     <button class="button" title="Add new date" @click="addNewDate(newDateValue)">
                                         <span class="icon">
-                                            <i class="far fa-calendar-plus"></i>
+                                            <i class="far fa-lg fa-calendar-check"></i>
                                         </span>
                                         <span>
                                             Add
@@ -42,7 +42,7 @@
                                 <div class="control has-text-right">
                                     <button class="button tt-is-borderless" title="Show new date picker" @click="showDatePicker()">
                                         <span class="icon">
-                                            <i class="far fa-calendar-plus"></i>
+                                            <i class="far fa-lg fa-calendar-plus"></i>
                                         </span>
                                         <span>
                                             New
@@ -66,7 +66,7 @@
                                 <div class="control">
                                     <button class="button tt-has-border-left" :class="{'is-static':disableButton}" title="Delete current date." @click="deleteDate(selectedEntry)">
                                         <span class="icon has-text-danger">
-                                            <i class="fas fa-times"></i>
+                                            <i class="fas fa-lg fa-times"></i>
                                         </span>
                                     </button>
                                 </div>
@@ -102,20 +102,61 @@
                                         <div class="control">
                                             <button class="button" :class="{'is-static':disableButton}" title="Save current entries" @click="saveEntry(selectedEntry)">
                                                 <span class="icon has-text-primary">
-                                                    <i class="fas fa-check"></i>
-                                                </span>
-                                                <span>
-                                                    Save
+                                                    <i class="fas fa-lg fa-save"></i>
                                                 </span>
                                             </button>
                                         </div>
                                         <div class="control">
                                             <button class="button" :class="{'is-static':disableButton}" title="Reset entries" @click="resetDate()">
                                                 <span class="icon">
-                                                    <i class="fas fa-undo-alt"></i>
+                                                    <i class="fas fa-lg fa-undo-alt"></i>
                                                 </span>
-                                                <span>
-                                                    Reset
+                                            </button>
+                                        </div>
+                                        <div class="control">
+                                            <button class="button" :class="{'is-static':disableButton}" title="Clear all entries" @click="clearAllRows(true)">
+                                                <span class="icon">
+                                                    <i class="far fa-lg fa-trash-alt"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="field has-addons is-inline-flex" :class="{'tt-is-hidden':newDateToggle[0]}">
+                                        <div class="control">
+                                            <input type="date" class="input tt-is-borderless tt-no-pad-right" v-model="newDateValue">
+                                        </div>
+                                        <div class="control has-text-right">
+                                            <button class="button" title="Add new date" @click="addNewDate(newDateValue)">
+                                                <span class="icon">
+                                                    <i class="far fa-lg fa-calendar-check"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="field is-inline-flex" :class="{'tt-is-hidden':newDateToggle[1]}">
+                                        <div class="control has-text-right">
+                                            <button class="button tt-is-borderless" title="Show new date picker" @click="showDatePicker()">
+                                                <span class="icon">
+                                                    <i class="far fa-lg fa-calendar-plus"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="field has-addons is-inline-flex">
+                                        <div class="control has-text-right">
+                                            <div class="select is-dark">
+                                                <select class="has-text-centered tt-is-borderless" v-model="selectedEntry" @change="loadActiveEntry">
+                                                    <option disabled>Select Date</option>
+                                                    <option v-for="(value, key, index) in entries" :value="key">
+                                                        {{convertDate(key)}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="control">
+                                            <button class="button tt-has-border-left" :class="{'is-static':disableButton}" title="Delete current date." @click="deleteDate(selectedEntry)">
+                                                <span class="icon has-text-danger">
+                                                    <i class="fas fa-lg fa-times"></i>
                                                 </span>
                                             </button>
                                         </div>
@@ -146,10 +187,10 @@
                                 <td id="icon-column">
                                     <div class="control has-text-centered">
                                         <a class="icon has-text-primary" @click="addRow(index)" title="Add row below.">
-                                            <i class="fas fa-plus-circle"></i>
+                                            <i class="fas fa-lg fa-plus-circle"></i>
                                         </a>
                                         <a class="icon has-text-danger" @click="delRow(index)" title="Delete row.">
-                                            <i class="fas fa-times-circle"></i>
+                                            <i class="fas fa-lg fa-times-circle"></i>
                                         </a>
                                     </div>
                                 </td>
@@ -196,7 +237,7 @@
                                 <div class="control">
                                     <button class="button" :class="{'is-static':disableButton}" title="Save entries" @click="saveEntry(selectedEntry)">
                                         <span class="icon has-text-primary">
-                                            <i class="fas fa-check"></i>
+                                            <i class="fas fa-lg fa-save"></i>
                                         </span>
                                         <span>
                                             Save
@@ -204,9 +245,9 @@
                                     </button>
                                 </div>
                                 <div class="control">
-                                    <button class="button" :class="{'is-static':disableButton}"title="Reset entries" @click="resetDate()">
+                                    <button class="button" :class="{'is-static':disableButton}" title="Reset entries" @click="resetDate()">
                                         <span class="icon">
-                                            <i class="fas fa-undo-alt"></i>
+                                            <i class="fas fa-lg fa-undo-alt"></i>
                                         </span>
                                         <span>
                                             Reset
@@ -216,7 +257,7 @@
                                 <div class="control">
                                     <button class="button" title="Clear all entries" @click="clearAllRows(true)">
                                         <span class="icon">
-                                            <i class="far fa-trash-alt"></i>
+                                            <i class="far fa-lg fa-trash-alt"></i>
                                         </span>
                                         <span>
                                             Clear
