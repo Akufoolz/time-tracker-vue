@@ -29,7 +29,7 @@ var vm = new Vue({
 
         delTypeValue: "",
 
-        newDateValue: new Date().getFullYear() + (((new Date().getMonth + 1) > 9) ? "-" : "-0") + (new Date().getMonth() + 1) + "-" + new Date().getDate(),
+        newDateValue: new Date().getFullYear() + (((new Date().getMonth + 1) > 9) ? "-" : "-0") + (new Date().getMonth() + 1) + ((new Date().getDate > 9) ? "-" : "-0") + new Date().getDate(),
 
         filterSelect: "Select Type",
 
@@ -224,7 +224,9 @@ var vm = new Vue({
             if (answer == true) {
                 Vue.delete(this.entries, date);
                 this.clearAllRows(false);
+                this.saveAllData();
                 this.selectedEntry = "Select Date";
+
             } else {
                 return;
             }
