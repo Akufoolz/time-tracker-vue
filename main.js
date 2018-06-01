@@ -124,19 +124,23 @@ var vm = new Vue({
         // calculate hour total on current row
         rowHours: function (entry) {
 
-            let dateStart = new Date(`January 01, 1970 ${entry.start}:00`);
-            let dateEnd = new Date(`January 01, 1970 ${entry.end}:00`);
+            if ((isNaN(entry.start)) && (isNaN(entry.end))) {
 
-            // convert miliseconds to hours and mask to two decimal places
-            let hours = parseFloat((((dateEnd - dateStart) / 1000) / 60) / 60).toFixed(2);
+                let dateStart = new Date(`January 01, 1970 ${entry.start}:00`);
+                let dateEnd = new Date(`January 01, 1970 ${entry.end}:00`);
 
-            entry.hours = hours;
+                // convert miliseconds to hours and mask to two decimal places
+                let hours = parseFloat((((dateEnd - dateStart) / 1000) / 60) / 60).toFixed(2);
 
-            if (!(isNaN(entry.hours))) {
+                entry.hours = hours;
+
                 return entry.hours;
+
             } else {
                 return "0.00";
             }
+
+
 
         },
 
