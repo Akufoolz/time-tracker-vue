@@ -11,12 +11,6 @@ var vm = new Vue({
         activeEntry: [
             {
                 type: "",
-                start: "00:00",
-                end: "12:00",
-                hours: ""
-            },
-            {
-                type: "",
                 start: "",
                 end: "",
                 hours: ""
@@ -124,10 +118,17 @@ var vm = new Vue({
         // calculate hour total on current row
         rowHours: function (entry) {
 
-            if ((isNaN(entry.start)) && (isNaN(entry.end))) {
+            let dateStart = 0;
+            let dateEnd = 0;
 
-                let dateStart = new Date(`January 01, 1970 ${entry.start}:00`);
-                let dateEnd = new Date(`January 01, 1970 ${entry.end}:00`);
+            if (entry.start != "" || entry.end != "") {
+
+                dateStart = new Date(`January 01, 1970 ${entry.start}:00`);
+                dateEnd = new Date(`January 01, 1970 ${entry.end}:00`);
+
+            }
+
+            if ((!(isNaN(dateStart))) && (!(isNaN(dateEnd)))) {
 
                 // convert miliseconds to hours and mask to two decimal places
                 let hours = parseFloat((((dateEnd - dateStart) / 1000) / 60) / 60).toFixed(2);
@@ -136,11 +137,10 @@ var vm = new Vue({
 
                 return entry.hours;
 
-            } else {
-                return "0.00";
+            }  else {
+                let total = 0;
+                return total.toFixed(2);
             }
-
-
 
         },
 
@@ -305,14 +305,22 @@ var vm = new Vue({
 
             let v = this;
             let total = 0;
-
+            /* 
+                        v.activeEntry.forEach(el => {
+                            if (!(isNaN(el.hours))) {
+                                total += parseFloat(el.hours);
+                            }
+                        });
+            */
             v.activeEntry.forEach(el => {
-                if (!(isNaN(el.hours))) {
+                if (isNaN(el.hours) || el.hours == "" || el.hours == undefined || el.hours == "0.00") {
+                } else {
                     total += parseFloat(el.hours);
                 }
             });
 
             return total.toFixed(2);
+
         },
 
         disableButton: function () {
