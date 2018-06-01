@@ -37,6 +37,10 @@ var vm = new Vue({
 
         newDateToggle: [true, false],
 
+        exportToggle: [true, false],
+
+        exportTextData: "",
+
     },
 
     methods: {
@@ -234,7 +238,7 @@ var vm = new Vue({
 
         saveAllData: function () {
             let allData = this.entries;
-            localStorage.setItem('allData', JSON.stringify(allData));
+            localStorage.setItem('allData', JSON.stringify(allData, null, "\t"));
             console.log("Saved data to LocalStorage.");
         },
 
@@ -247,7 +251,18 @@ var vm = new Vue({
         deleteEntries: function () {
             let obj = {};
             vm.$set(vm.data, 'entries', obj);
-        }
+        },
+
+        exportData: function () {
+            this.saveAllData();
+            let exportData = {};
+            exportData[this.selectedEntry] = this.$data.entries[this.selectedEntry];
+            this.exportTextData = JSON.stringify(exportData, null, "\t");
+        },
+
+        toggleExport: function () {
+            this.exportToggle.reverse();
+        },
 
     },
 
