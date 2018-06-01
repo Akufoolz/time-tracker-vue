@@ -2,4 +2,4 @@
 Rewrite of time-tracker using vue.js
 
 ## TODO:
-* Fix last table cell border in mobile view.
+Implement feature to export JSON data to a file.
