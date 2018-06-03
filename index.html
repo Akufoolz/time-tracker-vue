@@ -292,29 +292,33 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="field" :class="{'tt-is-hidden':exportToggle[1]}">
-                    <button class="button" @click="toggleExport()">
-                        Export Data
-                    </button>
-                </div>
-                <div class="field is-grouped" :class="{'tt-is-hidden':exportToggle[0]}">
-                    <div class="control">
-                        <button class="button" @click="exportData()">
-                            Export
-                        </button>
-                    </div>
-                    <div class="control">
-                        <button class="button" @click="toggleExport()">
-                            Hide
-                        </button>
-                    </div>
-                </div>
-                <div class="field" :class="{'tt-is-hidden':exportToggle[0]}">
-                    <div class="control">
-                        <textarea class="textarea" placeholder="JSON Data" v-model="exportTextData"></textarea>
+                    <div class="columns">
+                        <div class="column">
+                            <div class="container has-text-right">
+                                <div class="field" :class="{'tt-is-hidden':exportToggle[1]}">
+                                    <button class="button" @click="toggleExport()">
+                                        Export Data
+                                    </button>
+                                </div>
+                                <div class="field is-grouped has-text-right is-inline-flex" :class="{'tt-is-hidden':exportToggle[0]}">
+                                    <div class="control">
+                                        <button class="button" @click="exportData()">
+                                            Export
+                                        </button>
+                                    </div>
+                                    <div class="control">
+                                        <button class="button" @click="toggleExport()">
+                                            Hide
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="field" :class="{'tt-is-hidden':exportToggle[0]}">
+                                    <div class="control">
+                                        <textarea class="textarea" placeholder="JSON Data" v-model="exportTextData"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
