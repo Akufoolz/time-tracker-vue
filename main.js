@@ -121,7 +121,7 @@ var vm = new Vue({
             let dateStart = 0;
             let dateEnd = 0;
 
-            if (entry.start != "" || entry.end != "") {
+            if (entry.start != "" && entry.end != "") {
 
                 dateStart = new Date(`January 01, 1970 ${entry.start}:00`);
                 dateEnd = new Date(`January 01, 1970 ${entry.end}:00`);
